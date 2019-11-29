@@ -1,12 +1,13 @@
 const path = require("path")
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+const keys = require('./config/key')
 
 module.exports = {
   entry: path.resolve('src', 'index.js'),
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: '/',
-    filename: "bundle.js" // bundle.[contentHash].js
+    filename: `bundle${keys.bundleHash}.js`
   },
   module: {
     rules: [
@@ -32,7 +33,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      hash: true,
       title: "hahow recruit project",
       template: path.resolve('public', 'index.html'),
       filename: path.resolve('build', 'index.html'),

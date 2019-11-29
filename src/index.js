@@ -70,7 +70,10 @@ const App = () => {
       setTheme('light')
     }
   }
-  createSiteIconLink(MainIcon)
+  const noIconLinkInHead = document.getElementsByTagName('link').length === 0
+  if (noIconLinkInHead) {
+    createSiteIconLink(MainIcon)
+  }
   return (
     <ThemeContext.Provider value={{ theme, handleThemeChange }}>
       <Container>
