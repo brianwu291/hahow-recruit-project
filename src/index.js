@@ -29,6 +29,7 @@ const Hello = () => {
   return (
     <Cover>
       <img src={MainIcon} alt="dog" />
+      <div>I am a image!</div>
     </Cover>
   )
 }
