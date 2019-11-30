@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
+import HeroLists from './HeroLists'
+import HeroProfile from './HeroProfile'
 import ThemeContext from './ThemeContext'
 import MainIcon from './static/images/main_icon.ico'
 
@@ -14,34 +16,6 @@ const Container = ({ children }) => {
     <Wrapper>
       {children}
     </Wrapper>
-  )
-}
-
-const Hello = () => {
-  const { theme } = useContext(ThemeContext)
-  const Cover = styled.div`
-    color: ${theme === 'light' ? 'black' : 'white'};
-    > img {
-      width: 100px;
-      height: 100px;
-    }
-  `
-  return (
-    <Cover>
-      <img src={MainIcon} alt="dog" />
-      <div>I am a image!</div>
-    </Cover>
-  )
-}
-const World = () => {
-  const { theme } = useContext(ThemeContext)
-  const Cover = styled.div`
-    color: ${theme === 'light' ? 'black' : 'white'};
-  `
-  return (
-    <Cover>
-      <div>I am not Image</div>
-    </Cover>
   )
 }
 
@@ -82,22 +56,22 @@ const App = () => {
           <Route
             path="/"
             component={(props) => {
-              const isRightHash = props.location.hash === '#/hello'
-              return (isRightHash ? <Hello /> : null)
+              const isRightHash = props.location.hash === '#/heroes'
+              return (isRightHash ? <HeroLists /> : null)
             }}
           />
           <Route
             path="/"
             component={(props) => {
-              const isRightHash = props.location.hash === '#/world'
-              return (isRightHash ? <World /> : null)
+              const isRightHash = props.location.hash === '#/heroes/profile'
+              return (isRightHash ? <HeroProfile /> : null)
             }}
           />
           <button onClick={handleThemeChange} type="button">Click To Switch Theme</button>
           <LinkSection theme={theme}>
             <Link to="/">Home</Link>
-            <Link to={{ pathname: '/', hash: '#/hello' }}>To Hello</Link>
-            <Link to={{ pathname: '/', hash: '#/world' }}>To world</Link>
+            <Link to={{ pathname: '/', hash: '#/heroes' }}>To Hello</Link>
+            <Link to={{ pathname: '/', hash: '#/heroes/profile' }}>To world</Link>
           </LinkSection>
         </BrowserRouter>
       </Container>
