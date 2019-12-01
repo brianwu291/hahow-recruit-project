@@ -1,0 +1,2 @@
+export const FETCH_ALL_HERO = 'FETCH_ALL_HERO'
+export const FETCH_HERO_BY_ID = 'FETCH_HERO_BY_ID'
