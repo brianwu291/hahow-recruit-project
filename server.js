@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const keys = require('./config/key')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const app = express()
 
 app.use(bodyParser.json())
@@ -24,7 +24,7 @@ function createOption(input = 'js') {
 
 app.get('*', (req, res) => {
   res.sendFile('index.html', createOption('html'))
-  res.sendFile(`bundle.js${keys.bundleHash}`, createOption('js'))
+  res.sendFile(`bundle${keys.bundleHash}.js`, createOption('js'))
 })
 
 app.listen(port)

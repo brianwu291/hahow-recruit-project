@@ -1,21 +1,17 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import ThemeContext from '../ThemeContext'
+import ThemeContext from '../../themeContext'
 
-const HeroLists = () => {
+const HeroProfile = () => {
   const { theme } = useContext(ThemeContext)
   const Cover = styled.div`
     color: ${theme === 'light' ? 'black' : 'white'};
-    > img {
-      width: 100px;
-      height: 100px;
-    }
   `
   return (
     <Cover>
-      <div>I am a image!</div>
+      <div>I am single hero</div>
     </Cover>
   )
 }
 
-export default HeroLists
+export default HeroProfile
