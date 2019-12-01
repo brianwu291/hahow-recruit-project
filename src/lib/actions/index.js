@@ -23,7 +23,3 @@ export const fetchHeroById = (dispatch, heroId = 0) => () => {
     })
   })
 }
-
-export default {
-  fetchAllHero,
-}
