@@ -4,10 +4,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack.dev.js --open",
-    "start:dev": "yarn run build:dev && NODE_ENV=development node server.js",
-    "start:prod": "yarn run build:prod && NODE_ENV=production node server.js",
-    "build:dev": "rm -rf build && NODE_ENV=development webpack --config ./webpack.prod.js",
-    "build:prod": "rm -rf build && NODE_ENV=production webpack --config ./webpack.prod.js",
+    "start": "yarn run build && NODE_ENV=production node server.js",
+    "build": "rm -rf build && NODE_ENV=production webpack --config ./webpack.prod.js",
     "scss": "node-sass --watch styles -o css",
     "test": "jest",
     "test:watch": "jest --watch --testRegex '[a-zA-Z.]*(\\.test)(\\.js)$' "

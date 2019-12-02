@@ -5,7 +5,7 @@ import reduxThunk from 'redux-thunk'
 import reducers from './lib/reducers'
 import ThemeContext from './themeContext'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
 const store = createStore(reducers, {}, composeEnhancers(applyMiddleware(reduxThunk)))
 
 function createSiteIconLink(iconUrl) {

@@ -1,20 +1,12 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import LoadingSpinner from '../../../components/LoadingSpinner'
 
-const withHistory = (Component) => ({
-  allHeroDataLength,
-  history,
-  hash,
-}) => {
-  function heroDataIsLoading() {
-    return allHeroDataLength === 0
-  }
-  function hashIsEmpty() {
-    return hash === ''
-  }
-  if (hashIsEmpty) { history.push('/#/heros') }
-  return heroDataIsLoading() ? <Component /> : null
-}
+const withLoading = (Component) => ({ isLoading, ...props }) => (
+  <>
+    {isLoading ? <LoadingSpinner /> : <Component {...props} />}
+  </>
+)
 
-export const SpinnerWithHistoryPush = withHistory(LoadingSpinner)
+export const SpinnerWhileLoading = withLoading
