@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import get from 'lodash/get'
 import { fetchAllHero } from './lib/actions'
-import { SpinnerWithHistoryPush } from './lib/helpers/HOC'
 import HeroLists from './pages/HeroLists'
 import HeroProfile from './pages/HeroProfile'
 import ThemeContext from './themeContext'
@@ -14,7 +13,13 @@ import IconImage from './static/images/main_icon.ico'
 
 const Root = ({ isCorrectHash, createSiteIconLink }) => {
   const { theme, handleThemeChange } = useContext(ThemeContext)
-  const allHeroDataLength = useSelector((state) => get(state, 'allHero', []).length)
+  function getAllHeroData() {
+    const result = useSelector((state) => get(state, 'allHero', []))
+    return {
+      isLoading: result.length === 0,
+      data: result,
+    }
+  }
   const dispatch = useDispatch()
   useEffect(() => {
     createSiteIconLink(IconImage)
@@ -28,19 +33,13 @@ const Root = ({ isCorrectHash, createSiteIconLink }) => {
       <BrowserRouter>
         <Route
           path="/"
-          component={({ location, history }) => (
-            isCorrectHash('', get(location, 'hash', ''))
-              ? (
-                <SpinnerWithHistoryPush
-                  history={history}
-                  allHeroDataLength={allHeroDataLength}
-                  hash={get(location, 'hash', '')}
-                />
-              ) : null)}
-        />
-        <Route
-          path="/"
-          component={({ location }) => (isCorrectHash('#/heroes', getHashOnLocation(location)) ? <HeroLists /> : null)}
+          component={({ history }) => (
+            <HeroLists
+              history={history}
+              isLoading={getAllHeroData().isLoading}
+              allHeroData={getAllHeroData().data}
+            />
+          )}
         />
         <Route
           path="/"
