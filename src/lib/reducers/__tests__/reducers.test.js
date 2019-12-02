@@ -2,9 +2,9 @@ import { allHeroReducer, singleHeroReducer } from '../heroReducer'
 import * as actionTypes from '../../actions/types'
 import { mockData } from './mockData'
 
-describe('allHeroReducer', () => {
+describe('HeroReducer', () => {
   const initStateForAllHero = []
-  it('should return correct state on fetch all reducer', () => {
+  it('should return correct state on fetching all reducer', () => {
     const action = {
       type: actionTypes.FETCH_ALL_HERO,
       payload: mockData.allHeroData
@@ -33,10 +33,25 @@ describe('allHeroReducer', () => {
       }
     })
   })
-  
-  // it('should return correct state on clear user', () => {
-  //   const action = { type: actionTypes.CLEAR_USER }
-  //   const newSate = userReducer(initialUserState, action)
-  //   expect(newSate.isLoading).toEqual(false)
-  // })
+  it('should return correct data on fetching specific hero by heroId', () => {
+    const initSateForSingleHero = {}
+    function passSingleHeroActionToReducer(heroId) {
+      const hero = mockData.allHeroData[heroId - 1]
+      const action = {
+        type: actionTypes.FETCH_HERO_BY_ID,
+        payload: {
+          heroName: hero.name,
+          heroId: hero.id,
+          ...mockData.singleHeroData[heroId],
+        }
+      }
+      return singleHeroReducer(initSateForSingleHero, action)
+    }
+    expect(passSingleHeroActionToReducer(3).heroName).toBe('Iron Man')
+    expect(passSingleHeroActionToReducer(3).heroId).toBe("3")
+    expect(passSingleHeroActionToReducer(3).str).toBe(6)
+    expect(passSingleHeroActionToReducer(3).int).toBe(9)
+    expect(passSingleHeroActionToReducer(3).agi).toBe(6)
+    expect(passSingleHeroActionToReducer(3).luk).toBe(9)
+  })
 })

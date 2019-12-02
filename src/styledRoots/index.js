@@ -19,3 +19,6 @@ export const LinkSection = styled.div`
     color: ${({ theme = 'light' }) => (theme === 'light' ? 'black' : 'white')};
   }
 `
+export const ThemeButton = styled.button`
+  color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')}
+`

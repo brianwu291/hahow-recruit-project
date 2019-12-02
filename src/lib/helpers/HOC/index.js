@@ -13,7 +13,7 @@ const withHistory = (Component) => ({
   function hashIsEmpty() {
     return hash === ''
   }
-  if (hashIsEmpty) { history.push('/#/heros') }
+  if (hashIsEmpty) { history.push('/#/heroes') }
   return heroDataIsLoading() ? <Component /> : null
 }
 
