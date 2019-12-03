@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import get from 'lodash/get'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
-import ThemeContext from '../../themeContext'
-import { HeroListsWrapper } from './styledHeroLists'
+import { HeroListsWrapper } from './styled/styledHeroLists'
 import HeroCard from './components/HeroCard'
+import profileRouteRegex from '../../lib/helpers/RouteTest/profileRouteRegex'
 
-const renderHeroCardLists = (heroData) => heroData.map((hero) => (
+const renderHeroCardLists = (heroData, history) => heroData.map((hero) => (
   <HeroCard
+    history={history}
     key={get(hero, 'id', 0)}
     id={get(hero, 'id', 0)}
     image={get(hero, 'image', '')}
@@ -14,15 +15,16 @@ const renderHeroCardLists = (heroData) => heroData.map((hero) => (
   />
 ))
 
-const HeroLists = ({ history, allHeroData }) => {
-  const { theme } = useContext(ThemeContext)
+const HeroLists = ({ history, allHeroData, hash }) => {
   function pushToHero() {
-    history.push('/#/heroes')
+    if (profileRouteRegex().test(hash) === false) {
+      history.push('/#/heroes')
+    }
   }
   useEffect(pushToHero, [])
   return (
-    <HeroListsWrapper theme={theme}>
-      {renderHeroCardLists(allHeroData)}
+    <HeroListsWrapper>
+      {renderHeroCardLists(allHeroData, history)}
     </HeroListsWrapper>
   )
 }

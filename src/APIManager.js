@@ -9,7 +9,7 @@ const getAllHero = () => (
 
 const getHeroById = (heroId) => (
   axios.get(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`)
-    .then((res) => res)
+    .then((res) => (res.status === 200 ? get(res, 'data', {}) : { message: 'cannot get hero', status: res.status }))
     .catch((err) => err)
 )
 

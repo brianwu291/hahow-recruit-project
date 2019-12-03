@@ -5,9 +5,10 @@ const HeroCardWrapper = styled.div`
   cursor: pointer;
   flex-basis: 25%;
   padding: 14px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 1px 2px 5px 2px rgba(0,0,0,.2);
   border-radius: 6px;
   margin-top: 15px;
+  border: ${({ theme }) => (theme === 'light' ? 'none' : '1px solid')};
   ${mediaQuery.desktop`
     max-width: 23%;
   `}
@@ -23,14 +24,21 @@ const HeroCardWrapper = styled.div`
     transform: translateY(-4px);
   }
 `
-const ImageWrapper = styled.div``
+const ImageWrapper = styled.div`
+  text-align: center;
+  padding: 14px;
+`
 const NameWrapper = styled.div``
 const Image = styled.img`
   width: 100%;
   display: inline-block;
   height: 100%;
+  border-radius: 6px;
 `
-const Name = styled.p``
+const Name = styled.p`
+  text-align: center;
+  color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
+`
 
 export {
   HeroCardWrapper,

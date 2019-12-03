@@ -17,8 +17,8 @@ function createSiteIconLink(iconUrl) {
   head.appendChild(link)
 }
 
-function isCorrectHash(targetHash, inputHash) {
-  return targetHash === inputHash
+function isCorrectHash(testHashRegex, inputHash) {
+  return testHashRegex.test(inputHash)
 }
 
 const RootContainer = (RootComponent) => () => {
