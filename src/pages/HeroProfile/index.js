@@ -2,15 +2,41 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import ThemeContext from '../../themeContext'
 
-const HeroProfile = () => {
-  const { theme } = useContext(ThemeContext)
-  const Cover = styled.div`
-    color: ${theme === 'light' ? 'black' : 'white'};
-  `
+const HeroProfileWrapper = styled.div`
+  color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
+`
+function renderProfile(heroId) {
   return (
-    <Cover>
-      <div>I am single hero</div>
-    </Cover>
+    <div>
+      <div>
+        <span>{`title${heroId}`}</span>
+        <span>
+          <button type="button">+</button>
+          <span>score</span>
+          <button type="button">-</button>
+        </span>
+      </div>
+    </div>
+  )
+}
+
+function renderUpdateProfileButton() {
+  return (
+    <div>
+      <p>剩餘點數</p>
+      <button type="button">儲存</button>
+    </div>
+  )
+}
+
+const HeroProfile = ({ heroId }) => {
+  const { theme } = useContext(ThemeContext)
+  // const currentHero = useSelector((state) => get(state, 'currentHero', {}))
+  return (
+    <HeroProfileWrapper theme={theme}>
+      {renderProfile(heroId)}
+      {renderUpdateProfileButton()}
+    </HeroProfileWrapper>
   )
 }
 

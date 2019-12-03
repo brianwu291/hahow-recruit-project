@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components'
-import mediaQuery from '../../lib/helpers/mediaQuery'
+import mediaQuery from '../../../lib/helpers/mediaQuery'
 
 export const HeroListsWrapper = styled.div`
   display: flex;

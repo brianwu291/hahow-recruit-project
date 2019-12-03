@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import get from 'lodash/get'
 import { fetchAllHero } from './lib/actions'
 import HeroLists from './pages/HeroLists'
 import HeroProfile from './pages/HeroProfile'
 import ThemeContext from './themeContext'
 import RootContainer from './RootContainer'
-import { Container, LinkSection, ThemeButton } from './styledRoots'
+import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from './lib/helpers/RouteTest'
+import { Container, ThemeButton } from './styledRoots'
 import IconImage from './static/images/main_icon.ico'
 
-const Root = ({ isCorrectHash, createSiteIconLink }) => {
+const Root = ({ createSiteIconLink }) => {
   const { theme, handleThemeChange } = useContext(ThemeContext)
   function getAllHeroData() {
     const result = useSelector((state) => get(state, 'allHero', []))
@@ -25,38 +26,45 @@ const Root = ({ isCorrectHash, createSiteIconLink }) => {
     createSiteIconLink(IconImage)
     fetchAllHero(dispatch)
   }, [])
-  function getHashOnLocation(location) {
-    return get(location, 'hash', '')
+  function getPathname(location) {
+    return get(location, 'pathname', '/')
   }
   return (
     <Container theme={theme}>
       <BrowserRouter>
         <Route
           path="/"
-          component={({ history }) => (
-            <HeroLists
-              history={history}
-              isLoading={getAllHeroData().isLoading}
-              allHeroData={getAllHeroData().data}
-            />
-          )}
+          component={({ history, location }) => {
+            const pathname = getPathname(location)
+            const isProfileRoute = profileRouteRegex(pathname)
+            const isHeroesRoute = heroesRouteRegex(pathname)
+            const isHomeRoute = homeRouteRegex(pathname)
+            const canRenderHeroLists = isProfileRoute || isHeroesRoute || isHomeRoute
+            return canRenderHeroLists ? (
+              <HeroLists
+                history={history}
+                pathname={pathname}
+                isLoading={getAllHeroData().isLoading}
+                allHeroData={getAllHeroData().data}
+              />
+            ) : null
+          }}
         />
         <Route
-          path="/"
-          component={({ location }) => (isCorrectHash('#/heroes/profile', getHashOnLocation(location)) ? <HeroProfile /> : null)}
+          path="/heroes/profile/:heroId([1-4]{1})"
+          component={({ match }) => {
+            const heroId = get(match, 'params.heroId', 1)
+            return <HeroProfile heroId={heroId} />
+          }}
         />
-        <ThemeButton
-          onClick={handleThemeChange}
-          type="button"
-          theme={theme}
-        >
-          Click To Switch Theme
-        </ThemeButton>
-        <LinkSection theme={theme}>
-          <Link to={{ pathname: '/', hash: '#/heroes' }}>To Hero</Link>
-          <Link to={{ pathname: '/', hash: '#/heroes/profile' }}>To HeroProfile</Link>
-        </LinkSection>
       </BrowserRouter>
+      <ThemeButton
+        onClick={handleThemeChange}
+        type="button"
+        theme={theme}
+      >
+        Click To Switch Theme
+      </ThemeButton>
     </Container>
   )
 }

@@ -16,7 +16,7 @@ export const fetchAllHero = (dispatch) => getAllHero().then((allHeroData) => (
   })
 ))
 
-export const fetchHeroById = (dispatch, heroId = 0, heroName = '') => () => {
+export const fetchHeroById = (dispatch, { heroId = 0, heroName = '' }) => {
   if (heroId === 0) { return }
   getHeroById(heroId).then((heroData) => {
     const dataWithNameAndId = {
@@ -31,7 +31,7 @@ export const fetchHeroById = (dispatch, heroId = 0, heroName = '') => () => {
   })
 }
 
-export const updateHeroById = (dispatch, { heroId, value }) => () => {
+export const updateHeroById = (dispatch, { heroId, value }) => {
   if (heroId === 0) { return }
   patchHero(heroId, value).then((heroData) => {
     dispatch({
