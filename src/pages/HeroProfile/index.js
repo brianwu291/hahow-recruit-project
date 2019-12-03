@@ -5,11 +5,11 @@ import ThemeContext from '../../themeContext'
 const HeroProfileWrapper = styled.div`
   color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
 `
-function renderProfile() {
+function renderProfile(heroId) {
   return (
     <div>
       <div>
-        <span>title</span>
+        <span>{`title${heroId}`}</span>
         <span>
           <button type="button">+</button>
           <span>score</span>
@@ -29,12 +29,12 @@ function renderUpdateProfileButton() {
   )
 }
 
-const HeroProfile = () => {
+const HeroProfile = ({ heroId }) => {
   const { theme } = useContext(ThemeContext)
   // const currentHero = useSelector((state) => get(state, 'currentHero', {}))
   return (
     <HeroProfileWrapper theme={theme}>
-      {renderProfile()}
+      {renderProfile(heroId)}
       {renderUpdateProfileButton()}
     </HeroProfileWrapper>
   )

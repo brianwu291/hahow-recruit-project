@@ -1,6 +1,4 @@
 import React, { useContext, memo } from 'react'
-import { useDispatch } from 'react-redux'
-import { fetchHeroById } from '../../../lib/actions'
 import {
   HeroCardWrapper,
   ImageWrapper,
@@ -11,24 +9,22 @@ import {
 import Theme from '../../../themeContext'
 
 const HeroCard = ({
-  history,
+  id,
   image,
   name,
-  id,
+  history,
+  isSelected,
 }) => {
   const { theme } = useContext(Theme)
-  const dispatch = useDispatch()
-  // const [isSelected, setIsSelected] = useState(false)
-  function setCurrentHeroAndRenderProfile() {
-    history.push(`/#/heroes/profile/${id}`)
-    const selectedHero = {
-      heroName: name,
-      heroId: id,
+  function pushToProfile() {
+    if (isSelected) {
+      history.push('/heroes')
+    } else {
+      history.push(`/heroes/profile/${id}`)
     }
-    fetchHeroById(dispatch, selectedHero)
   }
   return (
-    <HeroCardWrapper onClick={setCurrentHeroAndRenderProfile} theme={theme}>
+    <HeroCardWrapper onClick={pushToProfile} theme={theme} isSelected={isSelected}>
       <ImageWrapper>
         <Image src={image} alt={name} />
       </ImageWrapper>
@@ -40,10 +36,11 @@ const HeroCard = ({
 }
 
 function arePropsEqual(preProps, nextProps) {
+  const isSelected = preProps.isSelected === nextProps.isSelected
   const isSameImg = preProps.image === nextProps.image
   const isSameName = preProps.name === nextProps.name
   const isSameId = preProps.id === nextProps.id
-  return isSameImg && isSameName && isSameId
+  return isSelected && isSameImg && isSameName && isSameId
 }
 
 export default memo(HeroCard, arePropsEqual)

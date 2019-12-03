@@ -17,24 +17,13 @@ function createSiteIconLink(iconUrl) {
   head.appendChild(link)
 }
 
-function isCorrectHash(testHashRegex, inputHash) {
-  return testHashRegex.test(inputHash)
-}
-
 const RootContainer = (RootComponent) => () => {
   const [theme, setTheme] = useState('light')
-  const handleThemeChange = () => {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }
+  const handleThemeChange = () => (theme === 'light' ? setTheme('dark') : setTheme('light'))
   return (
     <Provider store={store}>
       <ThemeContext.Provider value={{ theme, handleThemeChange }}>
         <RootComponent
-          isCorrectHash={isCorrectHash}
           createSiteIconLink={createSiteIconLink}
         />
       </ThemeContext.Provider>

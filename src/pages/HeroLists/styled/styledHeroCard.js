@@ -9,6 +9,8 @@ const HeroCardWrapper = styled.div`
   border-radius: 6px;
   margin-top: 15px;
   border: ${({ theme }) => (theme === 'light' ? 'none' : '1px solid')};
+  transform: ${({ isSelected }) => (isSelected ? 'translateY(-4px)' : 'translateY(0px)')};
+  background-color: ${({ isSelected }) => (isSelected ? 'coral' : 'none')};
   ${mediaQuery.desktop`
     max-width: 23%;
   `}
