@@ -1,13 +1,12 @@
 const path = require("path")
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-const keys = require('./config/key')
 
 module.exports = {
   entry: path.resolve('src', 'index.js'),
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: '/',
-    filename: process.env.NODE_ENV === 'production' ? `bundle${keys.bundleHash}.js` : 'bundle.[contentHash].js'
+    filename: 'bundle.[contentHash].js'
   },
   module: {
     rules: [
@@ -42,8 +41,5 @@ module.exports = {
         removeComments: true
       }
     })
-  ],
-  optimization: {
-    runtimeChunk: true,
-  }
+  ]
 }
