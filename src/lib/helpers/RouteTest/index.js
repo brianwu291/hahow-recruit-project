@@ -7,7 +7,7 @@ function profileRouteRegex(route = '') {
 }
 
 function homeRouteRegex(route = '') {
-  return route === '/' // /^\/$/.test
+  return route === '/'
 }
 
 export {

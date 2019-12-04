@@ -13,10 +13,10 @@ const getHeroById = (heroId) => (
     .catch((err) => err)
 )
 
-const patchHero = (heroId, values) => (
-  axios.patch(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`, values)
-    .then((res) => res)
-    .catch((err) => err)
+const patchHero = (heroId, newPowerData = {}) => (
+  axios.patch(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`, newPowerData)
+    .then((res) => (res.status === 200 ? get(res, 'data', []) : { message: 'cannot get hero', status: res.status }))
+    .catch((err) => ({ message: 'cannot get hero', status: err.status }))
 )
 
 export {

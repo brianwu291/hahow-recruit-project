@@ -23,24 +23,28 @@ export const mockData = {
   ],
   singleHeroData: {
     1: {
+      "heroId": '1',
       "str": 1,
       "int": 8,
       "agi": 9,
       "luk": 7
     },
     2: {
+      "heroId": '2',
       "str": 7,
       "int": 3,
       "agi": 5,
       "luk": 9
     },
     3: {
+      "heroId": '3',
       "str": 6,
       "int": 9,
       "agi": 6,
       "luk": 9
     },
     4: {
+      "heroId": '4',
       "str": 8,
       "int": 3,
       "agi": 2,

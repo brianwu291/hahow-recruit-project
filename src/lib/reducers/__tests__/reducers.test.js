@@ -34,24 +34,19 @@ describe('HeroReducer', () => {
     })
   })
   it('should return correct data on fetching specific hero by heroId', () => {
-    const initSateForSingleHero = {}
+    const initSateForSingleHero = []
     function passSingleHeroActionToReducer(heroId) {
-      const hero = mockData.allHeroData[heroId - 1]
       const action = {
-        type: actionTypes.FETCH_HERO_BY_ID,
-        payload: {
-          heroName: hero.name,
-          heroId: hero.id,
-          ...mockData.singleHeroData[heroId],
-        }
+        type: actionTypes.FETCH_SINGLE_HERO_BY_ID,
+        payload: mockData.singleHeroData[heroId]
       }
       return singleHeroReducer(initSateForSingleHero, action)
     }
-    expect(passSingleHeroActionToReducer(3).heroName).toBe('Iron Man')
-    expect(passSingleHeroActionToReducer(3).heroId).toBe("3")
-    expect(passSingleHeroActionToReducer(3).str).toBe(6)
-    expect(passSingleHeroActionToReducer(3).int).toBe(9)
-    expect(passSingleHeroActionToReducer(3).agi).toBe(6)
-    expect(passSingleHeroActionToReducer(3).luk).toBe(9)
+    const newState = passSingleHeroActionToReducer(1)
+    expect(newState.heroId).toBe('1')
+    expect(newState.str).toBe(1)
+    expect(newState.int).toBe(8)
+    expect(newState.agi).toBe(9)
+    expect(newState.luk).toBe(7)
   })
 })

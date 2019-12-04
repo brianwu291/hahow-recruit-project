@@ -40,6 +40,7 @@ const Image = styled.img`
 const Name = styled.p`
   text-align: center;
   color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
+  font-size: 2rem;
 `
 
 export {
