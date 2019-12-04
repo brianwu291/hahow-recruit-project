@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "export NODE_ENV=development && webpack-dev-server --config ./webpack.dev.js --open",
-    "build": "rm -rf build && export NODE_ENV=production && webpack --config ./webpack.prod.js",
+    "dev": "webpack-dev-server --config ./webpack.dev.js --open",
+    "start": "yarn run build && NODE_ENV=production node server.js",
+    "build": "rm -rf build && NODE_ENV=production webpack --config ./webpack.prod.js",
     "scss": "node-sass --watch styles -o css",
-    "test": "jest",
+    "test": "jest --testRegex '[a-zA-Z.]*(\\.test)(\\.js)$' ",
     "test:watch": "jest --watch --testRegex '[a-zA-Z.]*(\\.test)(\\.js)$' "
   },
   "engines": {
@@ -48,6 +48,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "babel-preset-minify": "^0.5.1",
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
     "connect-timeout": "^1.9.0",
