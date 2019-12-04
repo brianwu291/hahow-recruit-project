@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { compose } from 'redux'
-import ThemeContext from '../../themeContext'
+import ThemeContext from '../../ThemeContext'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import WithUpdate from './components/hoc/WithUpdate'
 import WithState from './components/hoc/WithState'

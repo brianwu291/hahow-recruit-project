@@ -6,7 +6,7 @@ import {
   NameWrapper,
   Name,
 } from '../styled/styledHeroCard'
-import Theme from '../../../themeContext'
+import Theme from '../../../ThemeContext'
 
 const HeroCard = ({
   id,
