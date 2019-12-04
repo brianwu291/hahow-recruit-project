@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+import get from 'lodash/get'
 import {
   getAllHero,
   getHeroById,
@@ -9,12 +11,22 @@ import {
   UPDATE_HERO_BY_ID,
 } from './types'
 
-export const fetchAllHero = (dispatch) => getAllHero().then((allHeroData) => (
+export const fetchAllHero = (dispatch) => getAllHero().then((allHeroData) => {
+  function addHttpsToImageWithoutSSL() {
+    return allHeroData.map((hero) => {
+      const originImgSrc = get(hero, 'image', '')
+      if (originImgSrc.includes('https') === false) {
+        const cutHttp = originImgSrc.substring(4)
+        hero.image = `https${cutHttp}`
+      }
+      return hero
+    })
+  }
   dispatch({
     type: FETCH_ALL_HERO,
-    payload: allHeroData,
+    payload: addHttpsToImageWithoutSSL(),
   })
-))
+})
 
 export const fetchHeroById = (dispatch, heroId = 0) => {
   if (heroId === 0) { return }
