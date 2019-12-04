@@ -9,7 +9,7 @@ import HeroProfile from './pages/HeroProfile'
 import ThemeContext from './themeContext'
 import RootContainer from './RootContainer'
 import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from './lib/helpers/RouteTest'
-import { Container, ThemeButton } from './styledRoots'
+import { Container, ThemeButton, ThemeButtonCircle } from './styledRoots'
 import IconImage from './static/images/main_icon.ico'
 
 const Root = ({ createSiteIconLink }) => {
@@ -63,7 +63,7 @@ const Root = ({ createSiteIconLink }) => {
         type="button"
         theme={theme}
       >
-        Click To Switch Theme
+        <ThemeButtonCircle theme={theme} />
       </ThemeButton>
     </Container>
   )

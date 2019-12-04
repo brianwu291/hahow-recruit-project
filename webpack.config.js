@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: '/',
-    filename: `bundle${keys.bundleHash}.js`
+    filename: process.env.NODE_ENV === 'production' ? `bundle${keys.bundleHash}.js` : 'bundle.[contentHash].js'
   },
   module: {
     rules: [
@@ -42,5 +42,8 @@ module.exports = {
         removeComments: true
       }
     })
-  ]
+  ],
+  optimization: {
+    runtimeChunk: true,
+  }
 }
