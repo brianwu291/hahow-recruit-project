@@ -10,9 +10,9 @@ import ThemeContext from './ThemeContext'
 import RootContainer from './RootContainer'
 import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from './lib/helpers/RouteTest'
 import { Container, ThemeButton, ThemeButtonCircle } from './styledRoots'
-import IconImage from './static/images/main_icon.ico'
+// import IconImage from './static/images/main_icon.ico'
 
-const Root = ({ createSiteIconLink }) => {
+const Root = () => {
   const { theme, handleThemeChange } = useContext(ThemeContext)
   function getAllHeroData() {
     const result = useSelector((state) => get(state, 'allHero', []))
@@ -23,7 +23,7 @@ const Root = ({ createSiteIconLink }) => {
   }
   const dispatch = useDispatch()
   useEffect(() => {
-    createSiteIconLink(IconImage)
+    // createSiteIconLink(IconImage)
     fetchAllHero(dispatch)
   }, [])
   function getPathname(location) {
