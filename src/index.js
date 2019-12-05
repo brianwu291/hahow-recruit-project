@@ -56,7 +56,7 @@ const Root = ({ createSiteIconLink }) => {
           }}
         />
         <Route
-          path="/heroes/profile/:heroId([1-4]{1})"
+          path="/heroes/:heroId([1-4]{1})"
           component={({ match }) => {
             const heroId = get(match, 'params.heroId', 1)
             return <HeroProfile heroId={heroId} />
