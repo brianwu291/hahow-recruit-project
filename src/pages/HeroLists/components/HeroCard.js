@@ -20,7 +20,7 @@ const HeroCard = ({
     if (isSelected) {
       history.push('/heroes')
     } else {
-      history.push(`/heroes/profile/${id}`)
+      history.push(`/heroes/${id}`)
     }
   }
   return (

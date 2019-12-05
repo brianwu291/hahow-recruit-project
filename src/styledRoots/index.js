@@ -47,6 +47,7 @@ export const LinkSection = styled.div`
   }
 `
 export const ThemeButton = styled.button`
+  cursor: pointer;
   background-color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
   position: fixed;
   top: 3%;
