@@ -10,7 +10,7 @@ import WithUpdate from './components/hoc/WithUpdate'
 import WithState from './components/hoc/WithState'
 import WithProfileData from './components/hoc/WthProfileData'
 
-import { ProfileCountWrapper } from './styled/styledProfileCount'
+import { CountListWrapper } from './styled/styledProfileCount'
 import HeroProfileWrapper from './styled/styledHeroProfileWrapper'
 import UpdateProfileButton from './components/UpdateProfileButton'
 import ProfileCount from './components/ProfileCount'
@@ -51,9 +51,9 @@ const HeroProfile = ({
   return (
     <HeroProfileWrapper theme={theme}>
       <NotifyUpdated updateStatus={updateHeroStatus} />
-      <ProfileCountWrapper>
+      <CountListWrapper>
         {renderProfileCountList(tempTotal, tempHeroDataLists, handleTempHeroDataChange)}
-      </ProfileCountWrapper>
+      </CountListWrapper>
       <UpdateProfileButton
         submitTempHeroData={submitTempHeroData}
         tempTotal={tempTotal}
