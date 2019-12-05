@@ -9,7 +9,12 @@ import HeroProfile from './pages/HeroProfile'
 import ThemeContext from './ThemeContext'
 import RootContainer from './RootContainer'
 import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from './lib/helpers/RouteTest'
-import { Container, ThemeButton, ThemeButtonCircle } from './styledRoots'
+import {
+  Container,
+  ThemeButton,
+  ThemeButtonCircle,
+  ThemeButtonText,
+} from './styledRoots'
 import IconImage from './static/images/main_icon.ico'
 
 const Root = ({ createSiteIconLink }) => {
@@ -63,6 +68,9 @@ const Root = ({ createSiteIconLink }) => {
         type="button"
         theme={theme}
       >
+        <ThemeButtonText theme={theme}>
+          {theme === 'light' ? '深色主題' : '淺色主題'}
+        </ThemeButtonText>
         <ThemeButtonCircle theme={theme} />
       </ThemeButton>
     </Container>

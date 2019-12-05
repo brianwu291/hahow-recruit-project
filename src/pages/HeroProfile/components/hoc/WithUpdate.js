@@ -24,7 +24,7 @@ const WithUpdate = (Component) => ({
     }
     if (updateSucceed) {
       fetchHeroById(dispatch, heroId)
-      setUpdateHeroStatusToEmpty()
+      setTimeout(setUpdateHeroStatusToEmpty, 1000)
     }
   })
   function submitTempHeroData() {
