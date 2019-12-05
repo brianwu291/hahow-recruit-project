@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import reduxThunk from 'redux-thunk'
+import { createStore, compose } from 'redux'
 import reducers from './lib/reducers'
 import ThemeContext from './ThemeContext'
 
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
-const store = createStore(reducers, {}, composeEnhancers(applyMiddleware(reduxThunk)))
+const enhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
+const store = createStore(reducers, {}, enhancers())
 
 function createSiteIconLink(iconUrl) {
   const head = document.getElementsByTagName('head')[0]

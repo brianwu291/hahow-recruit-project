@@ -42,12 +42,24 @@ export const fetchHeroById = (dispatch, heroId = 0) => {
   })
 }
 
-export const updateHeroById = (dispatch, { heroId, value }) => {
-  if (heroId === 0) { return }
+export const updateHeroById = (dispatch, { heroId = '', value }) => {
+  if (heroId === '') { return }
   patchHero(heroId, value).then((msg) => {
     dispatch({
       type: UPDATE_HERO_BY_ID,
       payload: msg,
     })
+    if (msg === 'OK') {
+      getHeroById(heroId).then((heroData) => {
+        const heroDataWithId = {
+          heroId,
+          ...heroData,
+        }
+        dispatch({
+          type: FETCH_SINGLE_HERO_BY_ID,
+          payload: heroDataWithId,
+        })
+      })
+    }
   })
 }

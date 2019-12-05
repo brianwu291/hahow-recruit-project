@@ -6,7 +6,7 @@ import {
 
 const initStateForAllHero = []
 const initSateForSingleHero = {}
-const initStateForUpdateHero = ''
+const initStateForUpdateHero = 'pending'
 
 export const allHeroReducer = (state = initStateForAllHero, action) => {
   switch (action.type) {

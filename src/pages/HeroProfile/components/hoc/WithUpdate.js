@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import get from 'lodash/get'
-import { fetchHeroById, updateHeroById } from '../../../../lib/actions'
+import { updateHeroById } from '../../../../lib/actions'
 import { UPDATE_HERO_BY_ID } from '../../../../lib/actions/types'
 import mapObjectToArray from '../../../../utils/mapObjectToArray'
 
@@ -16,15 +15,14 @@ const WithUpdate = (Component) => ({
   const updateHeroStatus = useSelector((state) => get(state, 'updateHeroStatus', ''))
   useEffect(() => {
     const updateSucceed = updateHeroStatus === 'OK'
-    function setUpdateHeroStatusToEmpty() {
+    function setUpdateHeroStatusToPending() {
       dispatch({
         type: UPDATE_HERO_BY_ID,
-        payload: '',
+        payload: 'pending',
       })
     }
     if (updateSucceed) {
-      fetchHeroById(dispatch, heroId)
-      setTimeout(setUpdateHeroStatusToEmpty, 1000)
+      setTimeout(setUpdateHeroStatusToPending, 600)
     }
   })
   function submitTempHeroData() {

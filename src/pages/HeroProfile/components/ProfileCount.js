@@ -7,6 +7,7 @@ import {
   Score,
   PlusButton,
   MinusButton,
+  ButtonText,
 } from '../styled/styledProfileCount'
 
 const ProfileCount = ({
@@ -31,7 +32,7 @@ const ProfileCount = ({
           type="button"
           onClick={() => handleTempHeroDataChange(propName, score, 1)}
         >
-          +
+          <ButtonText>+</ButtonText>
         </PlusButton>
         <Score>{score}</Score>
         <MinusButton
@@ -39,7 +40,7 @@ const ProfileCount = ({
           onClick={() => handleTempHeroDataChange(propName, score, -1)}
           disabled={isCurrentCountEqualToZero()}
         >
-          -
+          <ButtonText>-</ButtonText>
         </MinusButton>
       </ButtonWrapper>
     </CountWrapper>

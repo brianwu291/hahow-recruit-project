@@ -11,7 +11,6 @@ const GlobalCSS = createGlobalStyle`
   }
   html {
     font-family: "HelveticaNeue", "Helvetica" , "Arial" , "sans-serif";
-    font-size: 10px;
   }
   a, button {
     text-decoration: none;
@@ -27,7 +26,7 @@ export const Container = ({ children, theme }) => {
   const Wrapper = styled.div`
     width: 95%;
     margin: 0 auto;
-    padding: 5rem 0;
+    padding: 5px 0;
   `
   return (
     <>
