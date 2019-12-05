@@ -24,7 +24,10 @@ export const Name = styled.span`
   margin-right: auto;
 `
 
-export const ButtonWrapper = styled.span``
+export const ButtonWrapper = styled.span`
+  display: flex;
+  align-items: center;
+`
 
 export const Score = styled.span`
   display: inline-block;
