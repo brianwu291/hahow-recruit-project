@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import get from 'lodash/get'
+import get from '../../../../utils/get'
 
 const WithState = (Component) => ({ currentHeroData, maxTotal, heroId }) => {
   const [tempTotal, setTempTotal] = useState(0)

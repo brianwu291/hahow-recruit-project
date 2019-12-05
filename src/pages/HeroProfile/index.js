@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { compose } from 'redux'
-import get from 'lodash/get'
+import get from '../../utils/get'
 import ThemeContext from '../../ThemeContext'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import NotifyUpdated from '../../components/NotifyUpdated'

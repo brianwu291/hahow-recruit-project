@@ -2,10 +2,11 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import get from 'lodash/get'
+import get from '../../../../utils/get'
 import { fetchHeroById } from '../../../../lib/actions'
 
-const WithProfileData = (Component) => ({ heroId }) => {
+const WithProfileData = (Component) => (props) => {
+  const { heroId } = props
   const dispatch = useDispatch()
   useEffect(() => {
     fetchHeroById(dispatch, heroId)

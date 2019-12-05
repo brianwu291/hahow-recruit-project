@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import get from 'lodash/get'
+import get from '../../utils/get'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import { profileRouteRegex } from '../../lib/helpers/RouteTest'
 import { HeroListsWrapper } from './styled/styledHeroLists'

@@ -26,7 +26,7 @@ export const Container = ({ children, theme }) => {
   const Wrapper = styled.div`
     width: 95%;
     margin: 0 auto;
-    padding: 5px 0;
+    padding: 45px 0;
   `
   return (
     <>

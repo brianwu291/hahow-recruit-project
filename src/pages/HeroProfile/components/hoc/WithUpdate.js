@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import get from 'lodash/get'
+import get from '../../../../utils/get'
 import { updateHeroById } from '../../../../lib/actions'
 import { UPDATE_HERO_BY_ID } from '../../../../lib/actions/types'
 import mapObjectToArray from '../../../../utils/mapObjectToArray'

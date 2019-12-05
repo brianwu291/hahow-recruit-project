@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import get from 'lodash/get'
+import get from '../../utils/get'
 import {
   getAllHero,
   getHeroById,
