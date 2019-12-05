@@ -30,6 +30,7 @@ export const Score = styled.span`
   display: inline-block;
   width: 70px;
   text-align: center;
+  transform: translateY(-25%);
 `
 
 const PlusOrMinusButton = styled.button`
