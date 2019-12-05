@@ -47,7 +47,7 @@
      │
      ├── index.js                # App entry point
      │
-     ├── RootContainer.js        # 一個 for index.js 的 HOC，在裡面設置好 redux store、middleware、devtool 等，使 index.js 中單純負責 routing 與資料的拿取
+     ├── RootContainer.js        # 一個 for index.js 的 HOC，在裡面設置好 redux store、devtool 等，使 index.js 中單純負責 routing 與資料的拿取
      │
      ├── /styledRoots            # 首頁元件樣式，以及全站的 css 設定。
      │
@@ -58,6 +58,8 @@
      ├── /utils                  # 自己撰寫用來處理資料結構的函數
      │   │
      │   ├── __tests__           # 單位測試自己所寫的函數
+     │   │
+     │   ├── get.js              # 用來取物件的值，可以深層取、同時可以給預設值。
      │   │
      │   └── mapObjectToArray.js # 用以將物件轉換為陣列形式(每個項目保有原本的 key-value)
      │
