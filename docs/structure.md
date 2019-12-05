@@ -113,5 +113,5 @@
                       │
                       ├── WithUpdate.js # 接收來自 WithState 的 state 與方法，產生送出更新的函數，並以 Props 傳下去；同時在更新成功後，要顯示通知、並再次透過 api 更新 redux store 內對應英雄的資料。
                       │
-                      └── WithProfileData.js # 當 url 變動為/profile/:id，這裏會成為 render 起點，抓到 heroId 後透過 api 抓取英雄能力值，更新 store 並把能力值資料向下傳遞。
+                      └── WithProfileData.js # 當 url 變動為/heros/:id，這裏會成為 render 起點，抓到 heroId 後透過 api 抓取英雄能力值，更新 store 並把能力值資料向下傳遞。
 ```

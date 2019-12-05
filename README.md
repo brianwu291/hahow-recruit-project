@@ -12,22 +12,22 @@
 資料驅動的 JS 函式庫，負責打造 UI。透過資料的控制，讓開發者彈性地操作畫面邏輯，並以虛擬的 DOM 物件為基準，每次資料更新時，代替開發者實作更新成本更大的 DOM manipulate。
 
 * ###  **redux:**
-負責畫面的狀態管理。所有 state 由最上層唯一的 store 裡資料的決定，而 store 的 state 由 reducer function 決定。
+負責畫面的狀態管理。所有 state 由最上層唯一的 store 裡的資料決定，而 store 的 state 由 reducer function 決定。
 
-Redux 周邊的生態系，現今無論是使用 middleware，或是單純引用 react-redux 的 hooks api 都相當方便。
-Reducer Function 為 pure function, 方便撰寫 unit test。
+redux 周邊的生態系，現今無論是使用 middleware，或是單純引用 react-redux 的 hooks api 都相當方便。
+reducer function 為 pure function, 方便撰寫 unit test。
 
 * ###  **jest:**
 本身提供很多測試用的函數，此專案用來撰寫 unit test。
 
 * ###  **react-router_dom:**
-以 SPA 為前提、react 為基礎，加入 Browser history api，封裝成各式各樣的 HOC，讓開發者在 SPA 上操作 route。
+以 spa 為前提、react 為基礎，加入 browser history api，封裝成各式各樣的 HOC，讓開發者在 spa 上操作 route。
 
-換句話說，因為是 SPA，所以本質上是透過 URL 的變化，傳入封裝後的 HOC，來決定要 render 的 component。
+換句話說，因為是 spa，所以本質上是透過 URL 的變化，傳入封裝後的 HOC，來決定要 render 的 component。
 
 * ###  **lodash:**
-提供各式各樣的小 function，用在開發上常用到的動作陸如取值、合併、陣列 or 物件操作等。
-原先有使用，但只是想使用 get function，需求是希望在對物件連續 .notation 的動作時，若中間有 undefined，程式將會直接報錯而無法繼續執行。
+提供各式各樣的小 function，用在開發上常用到的動作例如取值、合併、陣列 or 物件操作等。
+原先有使用，但只是想使用 get function，需求是當在對物件連續 .notation 的動作時，若中間有 undefined，程式將會直接報錯而無法繼續執行，因此需要一個保護機制。
 
 後來索性自己寫一個，並將 lodash 移除。
 
@@ -49,7 +49,7 @@ On heroku server. Automatically deploy to production after pushed master branch 
 
 ## 我在程式碼中寫註解的原則，遇到什麼狀況會寫註解？
 
-給自己的的要求是希望，盡力地拆分功能與邏輯，並透過命名達到註解的目的：程式一目瞭然，了解流程。
+給自己的的要求是盡力地拆分功能與邏輯，並透過命名達到註解的目的：程式一目瞭然，了解流程。
 
 若實在由於過多的相依或複雜的事件交互，導致邏輯煩亂，或是大面積的情境 mapping，才會寫註解以幫助別人與未來的自己。
 
