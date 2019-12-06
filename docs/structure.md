@@ -104,11 +104,11 @@
           │
           ├── /styled             # HeroProfile 中使用到的樣式元件
           │
-          └── /components                # 存放 HeroProfile 用到的子元件們
+          └── /components              # 存放 HeroProfile 用到的子元件們
             │
-            ├── ProfileCount.js          # 顯示英雄能力值項目、並有刪減按鈕的元件
+            ├── /ProfileCount              # 顯示英雄能力值項目、並有刪減按鈕的元件
             │
-            ├── UpdateProfileButton.js   # 顯示剩餘可分配的能力值，並有送出更新的按鈕
+            ├── /UpdateProfileButton       # 顯示剩餘可分配的能力值，並有送出更新的按鈕
             │
             └── /hoc              # 為了使讓以上兩者成為單純的原件，因此把資料變動的邏輯抽出來，寫進這四個 hoc
              │

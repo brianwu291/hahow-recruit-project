@@ -23,13 +23,13 @@ const WithState = (Component) => ({ currentHeroData, maxTotal, heroId }) => {
       luk: tempLuk,
     })
   }
-  function setTempHero(propName) {
-    return allTempSetHeroFunc()[propName]
+  function setTempHero(skillName) {
+    return allTempSetHeroFunc()[skillName]
   }
-  function getPreTempHero(propName) {
-    return allTempHeroData()[propName]
+  function getPreTempHero(skillName) {
+    return allTempHeroData()[skillName]
   }
-  function handleTempHeroDataChange(propName = '', countScore = 0, value = 0) {
+  function handleTempHeroDataChange(skillName = '', countScore = 0, value = 0) {
     function isValueToBeOne() {
       return value === 1
     }
@@ -47,10 +47,10 @@ const WithState = (Component) => ({ currentHeroData, maxTotal, heroId }) => {
     }
     if (isValueToBeOne() && isTempTotalBiggerThanZero()) {
       setTempTotal(tempTotal - value)
-      setTempHero(propName)(getPreTempHero(propName) + value)
+      setTempHero(skillName)(getPreTempHero(skillName) + value)
     } else if (isValueToBeMinusOne() && isTempTotalSmallerThanMax() && isCountScoreBiggerThanZero()) {
       setTempTotal(tempTotal - value)
-      setTempHero(propName)(getPreTempHero(propName) + value)
+      setTempHero(skillName)(getPreTempHero(skillName) + value)
     }
   }
   return (
