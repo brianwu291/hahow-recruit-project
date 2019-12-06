@@ -1,3 +1,4 @@
 /node_modules
 /build
 /config/dev.js
+yarn-error.log

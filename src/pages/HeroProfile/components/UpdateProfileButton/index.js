@@ -1,11 +1,12 @@
 import React from 'react'
-import { UpdateProfileButtonWrapper, Title, UpdateButton } from '../styled/styledUpdateProfileButton'
+import Title from './components/Title'
+import { UpdateProfileButtonWrapper, UpdateButton } from '../../styled/styledUpdateProfileButton'
 
 const UpdateProfileButton = ({ tempTotal, submitTempHeroData }) => {
   const notQualifiedToUpdate = tempTotal > 0
   return (
     <UpdateProfileButtonWrapper>
-      <Title>{`剩餘點數: ${tempTotal}`}</Title>
+      <Title tempTotal={tempTotal} />
       <UpdateButton
         onClick={submitTempHeroData}
         disabled={notQualifiedToUpdate}

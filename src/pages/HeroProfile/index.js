@@ -25,14 +25,14 @@ const enhance = compose(
 
 function renderProfileCountList(tempTotal, heroDataList, handleTempHeroDataChange) {
   return heroDataList.map((dataItem) => {
-    function getPropName() {
+    function getSkillName() {
       return Object.keys(dataItem)[0]
     }
     return (
-      <React.Fragment key={getPropName()}>
+      <React.Fragment key={getSkillName()}>
         <ProfileCount
           data={dataItem}
-          propName={getPropName()}
+          skillName={getSkillName()}
           handleTempHeroDataChange={handleTempHeroDataChange}
           tempTotal={tempTotal}
         />

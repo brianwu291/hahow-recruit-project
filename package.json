@@ -10,9 +10,6 @@
     "test": "jest --testRegex '[a-zA-Z.]*(\\.test)(\\.js)$' ",
     "test:watch": "jest --watch --testRegex '[a-zA-Z.]*(\\.test)(\\.js)$' "
   },
-  "engines": {
-    "node": "^10.13.0"
-  },
   "author": "Brian Wu",
   "license": "MIT",
   "devDependencies": {
