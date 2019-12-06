@@ -1,8 +1,8 @@
 ## **Environment Required:**
 * Unix-like system
-* Node 10.13.0
+* Node 10.13.0+
 * Node Version Manager(nvm)
-* Yarn 1.19.1
+* Yarn 1.19.1+
 
 ## **Running Command:**
 ### **Development**<br>
