@@ -9,6 +9,7 @@ import {
   FETCH_ALL_HERO,
   FETCH_SINGLE_HERO_BY_ID,
   UPDATE_HERO_BY_ID,
+  CHANGE_THEME,
 } from './types'
 
 export const fetchAllHero = (dispatch) => getAllHero().then((allHeroData) => {
@@ -61,5 +62,12 @@ export const updateHeroById = (dispatch, { heroId = '', value }) => {
         })
       })
     }
+  })
+}
+
+export const changeTheme = (dispatch, newTheme) => {
+  dispatch({
+    type: CHANGE_THEME,
+    payload: newTheme,
   })
 }

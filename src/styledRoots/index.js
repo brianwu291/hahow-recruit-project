@@ -1,8 +1,6 @@
-import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-// import mediaQuery from '../lib/helpers/mediaQuery'
 
-const GlobalCSS = createGlobalStyle`
+export const GlobalCSS = createGlobalStyle`
   *  {
     box-sizing: border-box;
   }
@@ -22,21 +20,11 @@ const GlobalCSS = createGlobalStyle`
 
 `
 
-export const Container = ({ children, theme }) => {
-  const Wrapper = styled.div`
-    width: 95%;
-    margin: 0 auto;
-    padding: 45px 0;
-  `
-  return (
-    <>
-      <GlobalCSS theme={theme} />
-      <Wrapper>
-        {children}
-      </Wrapper>
-    </>
-  )
-}
+export const Container = styled.div`
+  width: 95%;
+  margin: 0 auto;
+  padding: 45px 0;
+`
 
 export const LinkSection = styled.div`
   a {
@@ -77,5 +65,5 @@ export const ThemeButtonCircle = styled.span`
   bottom: ${({ theme }) => (theme === 'light' ? '17px' : '0')};
   transform: ${({ theme }) => (theme === 'light' ? 'translateX(45px)' : 'translateX(-45px)')};
   margin-right: ${({ theme }) => (theme === 'light' ? '30px' : '-30px')};
-  transition: 1s;
+  transition: .1s;
 `

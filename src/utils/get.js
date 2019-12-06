@@ -4,7 +4,7 @@ function get(target = {}, props = '', def) {
   }
   const propsArr = props.split('.')
   const result = propsArr.reduce((pre, cur) => (
-    pre[cur] === undefined ? def : pre[cur]
+    pre === null || pre[cur] === undefined ? def : pre[cur]
   ), target)
   return result
 }

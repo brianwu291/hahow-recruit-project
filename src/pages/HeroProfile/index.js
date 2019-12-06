@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { compose } from 'redux'
 import get from '../../utils/get'
-import ThemeContext from '../../ThemeContext'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import NotifyUpdated from '../../components/NotifyUpdated'
 
 import WithUpdate from './components/hoc/WithUpdate'
 import WithState from './components/hoc/WithState'
 import WithProfileData from './components/hoc/WthProfileData'
+import WithRouter from './components/hoc/WithRouter'
 
 import { CountListWrapper } from './styled/styledProfileCount'
 import HeroProfileWrapper from './styled/styledHeroProfileWrapper'
@@ -16,6 +16,7 @@ import UpdateProfileButton from './components/UpdateProfileButton'
 import ProfileCount from './components/ProfileCount'
 
 const enhance = compose(
+  WithRouter,
   WithProfileData,
   SpinnerWhileLoading,
   WithState,
@@ -46,8 +47,8 @@ const HeroProfile = ({
   handleTempHeroDataChange,
   submitTempHeroData,
 }) => {
-  const { theme } = useContext(ThemeContext)
   const updateHeroStatus = useSelector((state) => (get(state, 'updateHeroStatus', '')))
+  const theme = useSelector((state) => (get(state, 'currentTheme', 'light')))
   return (
     <HeroProfileWrapper theme={theme}>
       <NotifyUpdated updateStatus={updateHeroStatus} />

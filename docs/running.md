@@ -10,7 +10,7 @@ First, clone this project:
 ```
 $ git clone https://github.com/brianwu291/hahow-recruit-project.git
 ```
-Then using node on 10.13.0 and install dependencies by yarn. 
+Then using node on 10.13.0 or plus and install dependencies by yarn. 
 ```
 $ nvm use 10.13.0
 $ yarn install
@@ -28,9 +28,9 @@ To check node version:
 ```
 $ node -v
 ```
-Use node on 10.13.0:
+Use node on 10.13.0 (or plus):
 ```
-$ nvm use 10.13.0
+$ nvm use 10.13.0 
 ```
 Install by yarn: 
 ```

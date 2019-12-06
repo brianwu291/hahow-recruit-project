@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react'
+import { compose } from 'redux'
 import get from '../../utils/get'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import { profileRouteRegex } from '../../lib/helpers/RouteTest'
+import WithRouter from './components/WithRouter'
 import { HeroListsWrapper } from './styled/styledHeroLists'
 import HeroCard from './components/HeroCard'
+
+const enhance = compose(
+  WithRouter,
+  SpinnerWhileLoading,
+)
 
 const renderHeroCardLists = (heroData, history, getIsSelectedHero) => heroData.map((hero) => {
   const isSelected = getIsSelectedHero(get(hero, 'id', 0))
@@ -35,4 +42,4 @@ const HeroLists = ({ history, allHeroData, pathname }) => {
   )
 }
 
-export default SpinnerWhileLoading(HeroLists)
+export default enhance(HeroLists)
