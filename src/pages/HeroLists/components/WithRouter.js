@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import get from '../../../utils/get'
 import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from '../../../lib/helpers/RouteTest'
+import ErrorPage from '../../../components/ErrorPage'
 
 function getPathname(location) {
   return get(location, 'pathname', '/')
@@ -27,7 +28,7 @@ const WithRouter = (Component) => ({ history, location }) => {
       isLoading={getAllHeroData().isLoading}
       allHeroData={getAllHeroData().data}
     />
-  ) : null
+  ) : <ErrorPage history={history} />
 }
 
 export default WithRouter

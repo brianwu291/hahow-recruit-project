@@ -1,5 +1,5 @@
 function heroesRouteRegex(route = '') {
-  return /^\/heroes$/.test(route)
+  return /^\/heroes$/.test(route) || /^\/heroes\/$/.test(route)
 }
 
 function profileRouteRegex(route = '') {

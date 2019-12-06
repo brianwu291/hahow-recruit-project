@@ -1,22 +1,22 @@
 import React from 'react'
-import get from '../../../utils/get'
+import get from '../../../../utils/get'
+import SkillName from './components/SkillName'
+import Score from './components/Score'
 import {
   CountWrapper,
-  Name,
   ButtonWrapper,
-  Score,
   PlusButton,
   MinusButton,
   ButtonText,
-} from '../styled/styledProfileCount'
+} from '../../styled/styledProfileCount'
 
 const ProfileCount = ({
   data,
-  propName,
+  skillName,
   handleTempHeroDataChange,
   tempTotal,
 }) => {
-  const score = get(data, `${propName}`, 0)
+  const score = get(data, `${skillName}`, 0)
   function isTempTotalEqualToZero() {
     return tempTotal === 0
   }
@@ -25,19 +25,19 @@ const ProfileCount = ({
   }
   return (
     <CountWrapper>
-      <Name>{propName}</Name>
+      <SkillName skillName={skillName} />
       <ButtonWrapper>
         <PlusButton
           disabled={isTempTotalEqualToZero()}
           type="button"
-          onClick={() => handleTempHeroDataChange(propName, score, 1)}
+          onClick={() => handleTempHeroDataChange(skillName, score, 1)}
         >
           <ButtonText>+</ButtonText>
         </PlusButton>
-        <Score>{score}</Score>
+        <Score score={score} />
         <MinusButton
           type="button"
-          onClick={() => handleTempHeroDataChange(propName, score, -1)}
+          onClick={() => handleTempHeroDataChange(skillName, score, -1)}
           disabled={isCurrentCountEqualToZero()}
         >
           <ButtonText>-</ButtonText>
