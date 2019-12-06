@@ -6,7 +6,7 @@ const HeroProfileWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1.4rem;
+  padding: 14px;
 `
 
 export default HeroProfileWrapper

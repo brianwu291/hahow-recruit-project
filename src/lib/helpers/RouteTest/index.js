@@ -3,7 +3,7 @@ function heroesRouteRegex(route = '') {
 }
 
 function profileRouteRegex(route = '') {
-  return /^\/heroes\/profile\/[1-4]{1}$/.test(route)
+  return /^\/heroes\/[1-4]{1}$/.test(route)
 }
 
 function homeRouteRegex(route = '') {

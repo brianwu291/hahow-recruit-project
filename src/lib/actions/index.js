@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import get from 'lodash/get'
+import get from '../../utils/get'
 import {
   getAllHero,
   getHeroById,
@@ -9,6 +9,7 @@ import {
   FETCH_ALL_HERO,
   FETCH_SINGLE_HERO_BY_ID,
   UPDATE_HERO_BY_ID,
+  CHANGE_THEME,
 } from './types'
 
 export const fetchAllHero = (dispatch) => getAllHero().then((allHeroData) => {
@@ -42,12 +43,31 @@ export const fetchHeroById = (dispatch, heroId = 0) => {
   })
 }
 
-export const updateHeroById = (dispatch, { heroId, value }) => {
-  if (heroId === 0) { return }
+export const updateHeroById = (dispatch, { heroId = '', value }) => {
+  if (heroId === '') { return }
   patchHero(heroId, value).then((msg) => {
     dispatch({
       type: UPDATE_HERO_BY_ID,
       payload: msg,
     })
+    if (msg === 'OK') {
+      getHeroById(heroId).then((heroData) => {
+        const heroDataWithId = {
+          heroId,
+          ...heroData,
+        }
+        dispatch({
+          type: FETCH_SINGLE_HERO_BY_ID,
+          payload: heroDataWithId,
+        })
+      })
+    }
+  })
+}
+
+export const changeTheme = (dispatch, newTheme) => {
+  dispatch({
+    type: CHANGE_THEME,
+    payload: newTheme,
   })
 }

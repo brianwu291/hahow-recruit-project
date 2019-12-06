@@ -41,8 +41,5 @@ module.exports = {
         removeComments: true
       }
     })
-  ],
-  optimization: {
-    runtimeChunk: true,
-  }
+  ]
 }

@@ -1,4 +1,5 @@
-import React, { useContext, memo } from 'react'
+import React, { memo } from 'react'
+import { useSelector } from 'react-redux'
 import {
   HeroCardWrapper,
   ImageWrapper,
@@ -6,7 +7,7 @@ import {
   NameWrapper,
   Name,
 } from '../styled/styledHeroCard'
-import Theme from '../../../ThemeContext'
+import get from '../../../utils/get'
 
 const HeroCard = ({
   id,
@@ -15,12 +16,12 @@ const HeroCard = ({
   history,
   isSelected,
 }) => {
-  const { theme } = useContext(Theme)
+  const theme = useSelector((state) => get(state, 'currentTheme', 'light'))
   function pushToProfile() {
     if (isSelected) {
       history.push('/heroes')
     } else {
-      history.push(`/heroes/profile/${id}`)
+      history.push(`/heroes/${id}`)
     }
   }
   return (

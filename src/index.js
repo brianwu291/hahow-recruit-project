@@ -1,82 +1,75 @@
-import React, { useContext, useEffect } from 'react'
+/* eslint-disable react/no-children-prop */
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
-import get from 'lodash/get'
-import { fetchAllHero } from './lib/actions'
+import get from './utils/get'
+import { fetchAllHero, changeTheme } from './lib/actions'
 import HeroLists from './pages/HeroLists'
 import HeroProfile from './pages/HeroProfile'
-import ThemeContext from './ThemeContext'
-import RootContainer from './RootContainer'
-import { profileRouteRegex, heroesRouteRegex, homeRouteRegex } from './lib/helpers/RouteTest'
+import ContainerWithRedux from './ContainerWithRedux'
 import {
   Container,
   ThemeButton,
   ThemeButtonCircle,
   ThemeButtonText,
+  GlobalCSS,
 } from './styledRoots'
 import IconImage from './static/images/main_icon.ico'
 
-const Root = ({ createSiteIconLink }) => {
-  const { theme, handleThemeChange } = useContext(ThemeContext)
-  function getAllHeroData() {
-    const result = useSelector((state) => get(state, 'allHero', []))
-    return {
-      isLoading: result.length === 0,
-      data: result,
-    }
-  }
+function createSiteIconLink(iconUrl) {
+  const head = document.getElementsByTagName('head')[0]
+  const link = document.createElement('link')
+  link.rel = 'Shortcut Icon'
+  link.type = 'image/x-icon'
+  link.href = iconUrl
+  head.appendChild(link)
+}
+
+const App = () => {
+  const theme = useSelector((state) => (get(state, 'currentTheme', 'light')))
   const dispatch = useDispatch()
   useEffect(() => {
     createSiteIconLink(IconImage)
     fetchAllHero(dispatch)
   }, [])
-  function getPathname(location) {
-    return get(location, 'pathname', '/')
+  function handleThemeChange() {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    changeTheme(dispatch, newTheme)
   }
   return (
-    <Container theme={theme}>
+    <>
       <BrowserRouter>
-        <Route
-          path="/"
-          component={({ history, location }) => {
-            const pathname = getPathname(location)
-            const isProfileRoute = profileRouteRegex(pathname)
-            const isHeroesRoute = heroesRouteRegex(pathname)
-            const isHomeRoute = homeRouteRegex(pathname)
-            const canRenderHeroLists = isProfileRoute || isHeroesRoute || isHomeRoute
-            return canRenderHeroLists ? (
-              <HeroLists
-                history={history}
-                pathname={pathname}
-                isLoading={getAllHeroData().isLoading}
-                allHeroData={getAllHeroData().data}
-              />
-            ) : null
-          }}
-        />
-        <Route
-          path="/heroes/profile/:heroId([1-4]{1})"
-          component={({ match }) => {
-            const heroId = get(match, 'params.heroId', 1)
-            return <HeroProfile heroId={heroId} />
-          }}
-        />
+        <GlobalCSS theme={theme} />
+        <Container>
+          <Route
+            path="/"
+            component={HeroLists}
+          />
+          <Route
+            path="/heroes/:heroId([1-4]{1})"
+            component={HeroProfile}
+          />
+          <ThemeButton
+            onClick={handleThemeChange}
+            type="button"
+            theme={theme}
+          >
+            <ThemeButtonText theme={theme}>
+              {theme === 'light' ? '深色主題' : '淺色主題'}
+            </ThemeButtonText>
+            <ThemeButtonCircle theme={theme} />
+          </ThemeButton>
+        </Container>
       </BrowserRouter>
-      <ThemeButton
-        onClick={handleThemeChange}
-        type="button"
-        theme={theme}
-      >
-        <ThemeButtonText theme={theme}>
-          {theme === 'light' ? '深色主題' : '淺色主題'}
-        </ThemeButtonText>
-        <ThemeButtonCircle theme={theme} />
-      </ThemeButton>
-    </Container>
+    </>
   )
 }
 
-const App = RootContainer(Root)
+const Root = () => (
+  <ContainerWithRedux>
+    <App />
+  </ContainerWithRedux>
+)
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Root />, document.getElementById('root'))
