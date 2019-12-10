@@ -1,6 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { compose } from 'redux'
+import { UPDATE_HERO_BY_ID } from '../../lib/actions/types'
 import get from '../../utils/get'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import NotifyUpdated from '../../components/NotifyUpdated'
@@ -45,10 +46,20 @@ const HeroProfile = ({
   submitTempHeroData,
 }) => {
   const updateHeroStatus = useSelector((state) => (get(state, 'updateHeroStatus', '')))
+  const dispatch = useDispatch()
   const theme = useSelector((state) => (get(state, 'currentTheme', 'light')))
+  function setUpdateHeroStatusToPending() {
+    const updateSucceed = updateHeroStatus === 'OK'
+    if (updateSucceed) {
+      dispatch({
+        type: UPDATE_HERO_BY_ID,
+        payload: 'pending',
+      })
+    }
+  }
   return (
     <HeroProfileWrapper theme={theme}>
-      <NotifyUpdated updateStatus={updateHeroStatus} />
+      <NotifyUpdated updateStatus={updateHeroStatus} handleClose={setUpdateHeroStatusToPending} />
       <CountListWrapper>
         {renderProfileCountList(tempTotal, tempHeroDataLists, handleTempHeroDataChange)}
       </CountListWrapper>

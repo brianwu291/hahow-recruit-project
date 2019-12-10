@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Title from './components/Title'
 import { UpdateProfileButtonWrapper, UpdateButton } from '../../styled/styledUpdateProfileButton'
 
@@ -18,4 +18,4 @@ const SubmitProfileButton = ({ tempTotal, submitTempHeroData }) => {
   )
 }
 
-export default SubmitProfileButton
+export default memo(SubmitProfileButton)

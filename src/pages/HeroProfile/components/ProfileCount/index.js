@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import get from '../../../../utils/get'
 import SkillName from './components/SkillName'
 import Score from './components/Score'
@@ -47,4 +47,4 @@ const ProfileCount = ({
   )
 }
 
-export default ProfileCount
+export default memo(ProfileCount)
