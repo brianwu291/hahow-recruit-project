@@ -59,7 +59,7 @@ export const ButtonText = styled.span`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -54%);
+  transform: translate(-50%, -52%);
 `
 
 export const PlusButton = styled(PlusOrMinusButton)`

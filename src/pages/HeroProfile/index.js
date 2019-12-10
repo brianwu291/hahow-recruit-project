@@ -4,15 +4,13 @@ import { compose } from 'redux'
 import get from '../../utils/get'
 import { SpinnerWhileLoading } from '../../lib/helpers/HOC'
 import NotifyUpdated from '../../components/NotifyUpdated'
-
 import WithUpdate from './components/hoc/WithUpdate'
 import WithState from './components/hoc/WithState'
 import WithProfileData from './components/hoc/WthProfileData'
 import WithRouter from './components/hoc/WithRouter'
-
 import { CountListWrapper } from './styled/styledProfileCount'
 import HeroProfileWrapper from './styled/styledHeroProfileWrapper'
-import UpdateProfileButton from './components/UpdateProfileButton'
+import SubmitProfileButton from './components/SubmitProfileButton'
 import ProfileCount from './components/ProfileCount'
 
 const enhance = compose(
@@ -29,14 +27,13 @@ function renderProfileCountList(tempTotal, heroDataList, handleTempHeroDataChang
       return Object.keys(dataItem)[0]
     }
     return (
-      <React.Fragment key={getSkillName()}>
-        <ProfileCount
-          data={dataItem}
-          skillName={getSkillName()}
-          handleTempHeroDataChange={handleTempHeroDataChange}
-          tempTotal={tempTotal}
-        />
-      </React.Fragment>
+      <ProfileCount
+        key={getSkillName()}
+        data={dataItem}
+        skillName={getSkillName()}
+        handleTempHeroDataChange={handleTempHeroDataChange}
+        tempTotal={tempTotal}
+      />
     )
   })
 }
@@ -55,7 +52,7 @@ const HeroProfile = ({
       <CountListWrapper>
         {renderProfileCountList(tempTotal, tempHeroDataLists, handleTempHeroDataChange)}
       </CountListWrapper>
-      <UpdateProfileButton
+      <SubmitProfileButton
         submitTempHeroData={submitTempHeroData}
         tempTotal={tempTotal}
       />

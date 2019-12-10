@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { FETCH_SINGLE_HERO_BY_ID } from '../../../lib/actions/types'
 import {
   HeroCardWrapper,
   ImageWrapper,
@@ -17,15 +18,26 @@ const HeroCard = ({
   isSelected,
 }) => {
   const theme = useSelector((state) => get(state, 'currentTheme', 'light'))
-  function pushToProfile() {
+  const dispatch = useDispatch()
+  function pushToUrl(url) {
+    history.push(url)
+  }
+  function setCurrentHeroToEmpty() {
+    dispatch({
+      type: FETCH_SINGLE_HERO_BY_ID,
+      payload: {},
+    })
+  }
+  function goToProfileOrHome() {
     if (isSelected) {
-      history.push('/heroes')
+      pushToUrl('/heroes')
+      setCurrentHeroToEmpty()
     } else {
-      history.push(`/heroes/${id}`)
+      pushToUrl(`/heroes/${id}`)
     }
   }
   return (
-    <HeroCardWrapper onClick={pushToProfile} theme={theme} isSelected={isSelected}>
+    <HeroCardWrapper onClick={goToProfileOrHome} theme={theme} isSelected={isSelected}>
       <ImageWrapper>
         <Image src={image} alt={name} />
       </ImageWrapper>

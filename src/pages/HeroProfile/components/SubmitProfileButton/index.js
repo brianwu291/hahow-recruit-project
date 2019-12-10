@@ -2,7 +2,7 @@ import React from 'react'
 import Title from './components/Title'
 import { UpdateProfileButtonWrapper, UpdateButton } from '../../styled/styledUpdateProfileButton'
 
-const UpdateProfileButton = ({ tempTotal, submitTempHeroData }) => {
+const SubmitProfileButton = ({ tempTotal, submitTempHeroData }) => {
   const notQualifiedToUpdate = tempTotal > 0
   return (
     <UpdateProfileButtonWrapper>
@@ -18,4 +18,4 @@ const UpdateProfileButton = ({ tempTotal, submitTempHeroData }) => {
   )
 }
 
-export default UpdateProfileButton
+export default SubmitProfileButton

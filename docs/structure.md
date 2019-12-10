@@ -1,5 +1,21 @@
-## **專案的架構，Web 的架構邏輯**
+## **Web 的架構邏輯**
+  
+### HeroList 部分:
+ * 進入頁面 --> url redirect 到 /heroes --> call api 抓取所有英雄資料 --> render HeroList
+ * 當 url 為 /heroes --> user 點擊 HeroCard --> 把 heroId 帶上 --> 觸發 url 變成 /heroes/:id
+ * 當 url 為 /heroes/:id --> user 點擊同一個 Hero Card --> 將
+ url 導回 /heroes --> 將 current hero 設為空值
+ * Regex 測試 url --> 判定為不合法 HeroProfile --> 轉到 Error404 page 
+### HeroProfile 部分:
+ * 監聽 url 的變化 --> Regex 測試 url --> 判定為合法 HeroProfile --> 獲取 url 上的 heroId，call api --> 設定 current Hero --> 開始 render
+ * Regex 測試 url --> 判定為不合法 HeroProfile --> 轉到 Error404 page 
+### HeroProfile 能力值變化:
+ * current Hero 設定完成 --> 將每個能力值設定 init state --> 算出最大值 --> 宣告當某項能力值 +/- 1 時的處理函數 --> 宣告儲存按鈕的函數(call patch api 更新英雄能力值)
+ * 玩轉各項能力值 --> 送出更新 --> 返回 ok --> 更新 current hero
+<br>
+<br>
 
+## **專案的架構**
 ```
 ├── README.md                # 文件總和，說明您該到哪裡找到想要的文件。
 │
@@ -108,7 +124,7 @@
             │
             ├── /ProfileCount              # 顯示英雄能力值項目、並有刪減按鈕的元件
             │
-            ├── /UpdateProfileButton       # 顯示剩餘可分配的能力值，並有送出更新的按鈕
+            ├── /SubmitProfileButton       # 顯示剩餘可分配的能力值，並有送出更新的按鈕
             │
             └── /hoc              # 為了使讓以上兩者成為單純的原件，因此把資料變動的邏輯抽出來，寫進這四個 hoc
              │

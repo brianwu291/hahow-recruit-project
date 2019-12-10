@@ -8,10 +8,10 @@ import { fetchHeroById } from '../../../../lib/actions'
 const WithProfileData = (Component) => (props) => {
   const { heroId } = props
   const dispatch = useDispatch()
+  const currentHeroData = useSelector((state) => get(state, 'currentHero', {}))
   useEffect(() => {
     fetchHeroById(dispatch, heroId)
   }, [heroId])
-  const currentHeroData = useSelector((state) => get(state, 'currentHero', {}))
   function isCurrentHeroDataLoading() {
     const keys = Object.keys(currentHeroData)
     return keys.length === 0 || heroId !== get(currentHeroData, 'heroId', 0)
@@ -26,14 +26,12 @@ const WithProfileData = (Component) => (props) => {
     return result
   }
   return (
-    <>
-      <Component
-        isLoading={isCurrentHeroDataLoading()}
-        heroId={heroId}
-        currentHeroData={currentHeroData}
-        maxTotal={getMaxTotal()}
-      />
-    </>
+    <Component
+      isLoading={isCurrentHeroDataLoading()}
+      heroId={heroId}
+      currentHeroData={currentHeroData}
+      maxTotal={getMaxTotal()}
+    />
   )
 }
 

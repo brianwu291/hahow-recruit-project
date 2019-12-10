@@ -38,31 +38,29 @@ const App = () => {
     changeTheme(dispatch, newTheme)
   }
   return (
-    <>
-      <BrowserRouter>
-        <GlobalCSS theme={theme} />
-        <Container>
-          <Route
-            path="/"
-            component={HeroLists}
-          />
-          <Route
-            path="/heroes/:heroId([1-4]{1})"
-            component={HeroProfile}
-          />
-          <ThemeButton
-            onClick={handleThemeChange}
-            type="button"
-            theme={theme}
-          >
-            <ThemeButtonText theme={theme}>
-              {theme === 'light' ? '深色主題' : '淺色主題'}
-            </ThemeButtonText>
-            <ThemeButtonCircle theme={theme} />
-          </ThemeButton>
-        </Container>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <GlobalCSS theme={theme} />
+      <Container>
+        <Route
+          path="/"
+          component={HeroLists}
+        />
+        <Route
+          path="/heroes/:heroId([1-4]{1})"
+          component={HeroProfile}
+        />
+        <ThemeButton
+          onClick={handleThemeChange}
+          type="button"
+          theme={theme}
+        >
+          <ThemeButtonText theme={theme}>
+            {theme === 'light' ? '深色主題' : '淺色主題'}
+          </ThemeButtonText>
+          <ThemeButtonCircle theme={theme} />
+        </ThemeButton>
+      </Container>
+    </BrowserRouter>
   )
 }
 
